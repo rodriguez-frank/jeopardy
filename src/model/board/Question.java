@@ -1,14 +1,16 @@
-package model;
+package model.board;
 
 /**
  * Represent a question/jeopardy clue in the game.
  */
 public class Question {
 
+    // category?
     private String qText;
     private String qAnswer;
     private int val;
     private boolean isDouble;
+    private boolean isAnswered;
 
     /**
      * Construct a question with a question text, answer, and value.
@@ -21,6 +23,7 @@ public class Question {
         this.qAnswer = qAnswer;
         this.val = val;
         this.isDouble = false;
+        this.isAnswered = false;
     }
 
     /**
@@ -44,7 +47,11 @@ public class Question {
      * @return the value of single jeopardy for the question
      */
     public int getVal() {
-        return this.val;
+        if (! isDouble ) {
+            return this.val;
+        } else {
+            return this.val * 2;
+        }
     }
 
     /**
@@ -59,5 +66,20 @@ public class Question {
      */
     public void setDoubleJ(boolean dj) {
         this.isDouble = dj;
+    }
+
+    /**
+     * Return if a question has been answered yet.
+     * @return true if question answered, false if not.
+     */
+    public boolean isAnswered() {
+        return this.isAnswered;
+    }
+
+    /**
+     * Set a question to be answered or unanswered.
+     */
+    public void setAnswered(boolean setter) {
+        this.isAnswered = setter;
     }
 }
